@@ -1,0 +1,70 @@
+#!/usr/bin/env ruby
+require 'gli'
+require 'pptx2markdown'
+
+module Pptx2markdown
+  class Application
+    include GLI::App
+    extend GLI::App
+
+    program_desc 'Extracts text from pptx files to markdown'
+
+    version Pptx2markdown::VERSION
+
+    subcommand_option_handling :normal
+    arguments :strict
+
+    desc 'Dump all headers and text lines from pptx file to markdown file'
+    command :dump do |dump_command|
+      dump_command.desc 'Input pptx file'
+      dump_command.flag [:i, 'input-file']#, must_match: /\.pptx\Z/
+
+      dump_command.desc 'Output markdown file'
+      dump_command.flag [:o, 'output-file'], default_value: :stdout
+
+      dump_command.action do |global_options, options, args|
+        # In order to provide a custom error message instead of a default one
+        input_file = options[:i]
+        raise 'input pptx file is required!' if input_file.nil? || input_file.empty?
+        Pptx2markdown::Commands::Dump.new(options).execute
+      end
+    end
+
+    desc 'Build pptx file from markdown file'
+    command :build do |build_command|
+      build_command.action do |global_options,options,args|
+        Pptx2markdown::Commands::Build.new(args).execute
+      end
+    end
+
+    desc 'Extract all headers and text lines from pptx and create new pptx file'
+    command :rebuild do |rebuild_command|
+      rebuild_command.action do |global_options,options,args|
+        Pptx2markdown::Commands::Rebuild.new(args).execute
+      end
+    end
+
+    pre do |global,command,options,args|
+      # Pre logic here
+      # Return true to proceed; false to abort and not call the
+      # chosen command
+      # Use skips_pre before a command to skip this block
+      # on that command only
+      true
+    end
+
+    post do |global,command,options,args|
+      # Post logic here
+      # Use skips_post before a command to skip this
+      # block on that command only
+    end
+
+    on_error do |exception|
+      # Error logic here
+      # return false to skip default error handling
+      true
+    end
+
+    exit run(ARGV)
+  end
+end
