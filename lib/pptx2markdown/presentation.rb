@@ -6,7 +6,7 @@ module Pptx2markdown
 
     # some implementations may contain paths like "ppt/slides/slide.xml"
     # without slide number, therefore digits are not mandatory there
-    SLIDE_PATH_RE = /\Appt\/slides\/slide(?<slide_number>\d*).xml\Z/.freeze
+    SLIDE_PATH_RE = %r{\Appt\/slides\/slide(?<slide_number>\d*).xml\Z}
 
     def initialize(package)
       @package  = package
@@ -50,7 +50,7 @@ module Pptx2markdown
       # we need to slice list to the last <slides count> items only (that's a
       # little bit strange, of course, but as it is)
       titles = metadata.xpath '/Properties/TitlesOfParts/vector/lpstr/text()'
-      titles.slice(-slides_count, titles.size).map &:text
+      titles.slice(-slides_count, titles.size).map(&:text)
     end
 
     def extract_slides_data

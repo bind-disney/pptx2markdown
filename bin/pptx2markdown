@@ -17,12 +17,12 @@ module Pptx2markdown
     desc 'Dump all headers and text lines from pptx file to markdown file'
     command :dump do |dump_command|
       dump_command.desc 'Input pptx file'
-      dump_command.flag [:i, 'input-file']#, must_match: /\.pptx\Z/
+      dump_command.flag [:i, 'input-file'] # , must_match: /\.pptx\Z/
 
       dump_command.desc 'Output markdown file'
       dump_command.flag [:o, 'output-file'], default_value: :stdout
 
-      dump_command.action do |global_options, options, args|
+      dump_command.action do |_global_options, options, _args|
         Pptx2markdown::Commands::Dump.new(options).execute
       end
     end
@@ -33,19 +33,15 @@ module Pptx2markdown
       build_command.flag [:i, 'input-file']
 
       build_command.desc 'Output pptx file'
-      build_command.flag [:o, 'output-file']#, must_match: /\.pptx\Z/
+      build_command.flag [:o, 'output-file'] # , must_match: /\.pptx\Z/
 
-      build_command.action do |global_options,options,args|
+      build_command.action do |_global_options, options, _args|
         Pptx2markdown::Commands::Build.new(options).execute
       end
     end
 
     desc 'Extract all headers and text lines from pptx and create new pptx file'
     command :rebuild do |rebuild_command|
-<<<<<<< HEAD
-      rebuild_command.action do |global_options,options,args|
-        Pptx2markdown::Commands::Rebuild.new(args).execute
-=======
       rebuild_command.desc 'Replace existing pptx file or create new'
       rebuild_command.switch [:r, :replace], default_value: false
 
@@ -54,29 +50,7 @@ module Pptx2markdown
 
       rebuild_command.action do |_global_options, options, _args|
         Pptx2markdown::Commands::Rebuild.new(options).execute
->>>>>>> 01aece2... Implement rebuild command
       end
-    end
-
-    pre do |global,command,options,args|
-      # Pre logic here
-      # Return true to proceed; false to abort and not call the
-      # chosen command
-      # Use skips_pre before a command to skip this block
-      # on that command only
-      true
-    end
-
-    post do |global,command,options,args|
-      # Post logic here
-      # Use skips_post before a command to skip this
-      # block on that command only
-    end
-
-    on_error do |exception|
-      # Error logic here
-      # return false to skip default error handling
-      true
     end
 
     exit run(ARGV)
