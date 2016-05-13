@@ -42,8 +42,19 @@ module Pptx2markdown
 
     desc 'Extract all headers and text lines from pptx and create new pptx file'
     command :rebuild do |rebuild_command|
+<<<<<<< HEAD
       rebuild_command.action do |global_options,options,args|
         Pptx2markdown::Commands::Rebuild.new(args).execute
+=======
+      rebuild_command.desc 'Replace existing pptx file or create new'
+      rebuild_command.switch [:r, :replace], default_value: false
+
+      rebuild_command.desc 'Input pptx file'
+      rebuild_command.flag [:i, 'input-file'] # , must_match: /\.pptx\Z/
+
+      rebuild_command.action do |_global_options, options, _args|
+        Pptx2markdown::Commands::Rebuild.new(options).execute
+>>>>>>> 01aece2... Implement rebuild command
       end
     end
 

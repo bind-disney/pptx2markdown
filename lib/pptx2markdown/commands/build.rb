@@ -48,7 +48,12 @@ module Pptx2markdown
       end
 
       def open_input_file
-        File.open input_filepath, 'r'
+        input_file = options['input-file']
+
+        case input_file
+        when StringIO then input_file
+        when String   then File.open input_filepath, 'r'
+        end
       end
 
       def output_filepath
