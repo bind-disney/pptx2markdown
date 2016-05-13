@@ -26,7 +26,9 @@ module Pptx2markdown
       def normalize_filepath(kind)
         filepath = options["#{kind}-file"]
 
-        raise ArgumentError, "#{kind} file isn't specified!" if filepath.empty?
+        if filepath.nil? || filepath.empty?
+          raise ArgumentError, "#{kind} file isn't specified!"
+        end
 
         Pathname.new(filepath).expand_path.to_s
       end
