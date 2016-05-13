@@ -1,3 +1,45 @@
+### Description
+
+This is the small ruby gem implemented as CLI app, which converts PowerPoint presentations to Markdown-like files.
+
+It only supports 2-level lists where first level designates slide headers and second level (tab-indented) are the text paragraphs of the slide.
+
+Also it can build simple text-only presentations from the 2-level lists described above and rebuild rich presentations to the text-only ones.
+
+### Installation
+
+1. Clone git repository
+2. CD into it
+3. Run ```docker build -t pptx2markdown .```
+
+### Usage
+
+Utility has 3 commands: dump, build and rebuild:
+
+##### Dump content of the presentation to the STDOUT:
+
+```
+docker run --rm --name pptx2markdown -v $PWD:/data pptx2markdown dump -i /data/presentation.pptx
+```
+
+##### Dump content of the presentation to the file:
+
+```
+docker run --rm --name pptx2markdown -v $PWD:/data pptx2markdown dump -i /data/presentation.pptx -o /data/presentation.md
+```
+
+##### Build text-only presentation from the text file with 2-level lists:
+
+```
+docker run --rm --name pptx2markdown -v $PWD:/data pptx2markdown build -i /data/presentation.md -o /data/presentation.pptx
+```
+
+##### Rebuild rich presentation to text-only format:
+
+```
+docker run --rm --name pptx2markdown -v $PWD:/data pptx2markdown rebuild -i /data/presentation.pptx
+```
+
 ### References
 
 1. Creating Ruby gems
