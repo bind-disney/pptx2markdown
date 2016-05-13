@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.version = Pptx2markdown::VERSION
   spec.author = 'Artem Filatov'
   spec.email = 'bind.disney@gmail.com'
-  spec.homepage = 'https://facebook.com/bind.disney'
+  spec.homepage = 'https://github.com/bind-disney/pptx2markdown'
   spec.platform = Gem::Platform::RUBY
   spec.summary = 'PPTX to Markdown converter'
   spec.files = `git ls-files`.split("
