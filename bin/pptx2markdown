@@ -23,17 +23,20 @@ module Pptx2markdown
       dump_command.flag [:o, 'output-file'], default_value: :stdout
 
       dump_command.action do |global_options, options, args|
-        # In order to provide a custom error message instead of a default one
-        input_file = options[:i]
-        raise 'input pptx file is required!' if input_file.nil? || input_file.empty?
         Pptx2markdown::Commands::Dump.new(options).execute
       end
     end
 
     desc 'Build pptx file from markdown file'
     command :build do |build_command|
+      build_command.desc 'Input markdown file'
+      build_command.flag [:i, 'input-file']
+
+      build_command.desc 'Output pptx file'
+      build_command.flag [:o, 'output-file']#, must_match: /\.pptx\Z/
+
       build_command.action do |global_options,options,args|
-        Pptx2markdown::Commands::Build.new(args).execute
+        Pptx2markdown::Commands::Build.new(options).execute
       end
     end
 

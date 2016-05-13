@@ -4,7 +4,7 @@ module Pptx2markdown
 
     def initialize(title, xml)
       @xml = xml
-      @title = title
+      @title = title.strip
       @paragraphs = extract_paragraphs
     end
 

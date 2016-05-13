@@ -50,3 +50,8 @@
   * [Populating Word 2007 Templates Through Open XML](https://seroter.wordpress.com/2009/12/23/populating-word-2007-templates-through-open-xml/)
   * [Creating word documents in rails](http://rubythings.blogspot.ru/2011/05/creating-word-documents-in-rails.html)
   * [Use Ruby on Rails to modify an Open XML document](http://openxmldeveloper.org/blog/b/openxmldeveloper/archive/2009/07/02/5389.aspx)
+8. Working with IO
+  * [IO in Ruby](https://robots.thoughtbot.com/io-in-ruby)
+  * [A self guided course on streams, files, file formats, and sockets](https://www.practicingruby.com/articles/study-guide-1)
+  * [9.1 Streams](https://rubymonk.com/learning/books/1-ruby-primer/chapters/42-introduction-to-i-o/lessons/89-streams)
+  * [Input & output in Ruby](http://zetcode.com/lang/rubytutorial/io/)

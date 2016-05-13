@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop'
 
   spec.add_runtime_dependency 'gli', '~> 2.13.4'
-  spec.add_runtime_dependency 'pptx', '0.0.1'
+  spec.add_runtime_dependency 'powerpoint', '1.8'
   spec.add_runtime_dependency 'rubyzip', '~> 1.1.2'
   spec.add_runtime_dependency 'nokogiri', '~> 1.6.7.2'
   spec.add_runtime_dependency 'openxml-package', '~> 0.2.4'
